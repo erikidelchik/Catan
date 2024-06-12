@@ -65,7 +65,7 @@ namespace ariel{
                             j.getRoads()[k] = &getRoadMap()[row][p+k];
                         }
                         else if(k==2 || k==5){
-                            j.getRoads()[k] = &getRoadMap()[row+1][p+k%5-1];
+                            j.getRoads()[k] = &getRoadMap()[row+1][p/2+k%5];
                         }
                         else if(k==3 || k==4){
                             j.getRoads()[k] = &getRoadMap()[row+2][p+k%5];
@@ -73,22 +73,34 @@ namespace ariel{
                     }
                     p+=2;
                 }
-                if(i==2){
+                else if(i==2){
                     for(int k=0;k<6;k++){
                         if(k==0 || k==1){
                             j.getRoads()[k] = &getRoadMap()[row][p+k];
                         }
                         else if(k==2 || k==5){
-                            j.getRoads()[k] = &getRoadMap()[row+1][p+k%5-1];
+                            j.getRoads()[k] = &getRoadMap()[row+1][p/2+k%5];
                         }
                         else if(k==3 || k==4){
-                            j.getRoads()[k] = &getRoadMap()[row+2][p+k%5];
+                            j.getRoads()[k] = &getRoadMap()[row+2][p+k%5-1];
                         }
                     }
                     p+=2;
                 }
-
-
+                else{
+                    for(int k=0;k<6;k++){
+                        if(k==0 || k==1){
+                            j.getRoads()[k] = &getRoadMap()[row][p+k+1];
+                        }
+                        else if(k==2 || k==5){
+                            j.getRoads()[k] = &getRoadMap()[row+1][p/2+k%5];
+                        }
+                        else if(k==3 || k==4){
+                            j.getRoads()[k] = &getRoadMap()[row+2][p+k%5-1];
+                        }
+                    }
+                    p+=2;
+                }
             }
             row+=2;
         }
