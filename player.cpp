@@ -29,7 +29,7 @@ namespace ariel{
 
                         }
                         else{
-                            cout<<j.getSettlements()[side]->getOwner()<<" already have a road here";
+                            cout<<j.getSettlements()[side]->getOwner()<<" already have a settlement here";
                             return;
                         }
                     }
@@ -45,8 +45,32 @@ namespace ariel{
 
     }
 
-    void Player::placeRoad(Board &board,string& place,int num,int side){
+    void Player::placeRoad(Board &board,string place,int num,int side){
+        if(1){
+            brick-=1;
+            wood-=1;
+            Road road(*this);
+            for(int i=0;i<5;i++){
+                for(Place& j:board.getBoard()[i]){
+                    if(j.getName()==place && j.getNum()==num){
+                        //check if can no one have a road there
+                        if(j.getRoads()[side]->getOwner()=="none"){
+                            *j.getRoads()[side] = road;
+                            return;
+                        }
+                        else{
+                            cout<<j.getRoads()[side]->getOwner()<<" already have a road here\n";
+                            return;
+                        }
+                    }
+                }
+            }
+            cout<<"Place does not exist\n";
 
+        }
+        else{
+            cout<<this->getName()<<" does not have enough resources to build a road\n";
+        }
     }
 
 
