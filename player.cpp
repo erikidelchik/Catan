@@ -182,7 +182,7 @@ namespace ariel{
     void Player::buyCard(Catan& catan) {
 
 
-        if(1){
+        if(sheep>=1 && ore>=1 && wheat>=1){
             sheep-=1;
             ore-=1;
             wheat-=1;
