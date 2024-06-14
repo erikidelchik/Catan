@@ -2,19 +2,23 @@
 #define PLAYER_HPP
 
 #include <iostream>
-
+#include "card.hpp"
+#include <vector>
 
 using namespace std;
 
 namespace ariel{
 
     class Board;
+    class Catan;
 
     class Player{
         string name;
+        vector<Card> cards =
+                {Card("Knight"),Card("bigArmy"),Card("Monopoly"),Card("freeRoads"),Card("freeResources")};
 
-        int points;
         int freeSettlements = 2;
+        int freeRoads = 2;
 
         int wood;
         int brick;
@@ -22,19 +26,43 @@ namespace ariel{
         int wheat;
         int ore;
 
-        int* resources[5] = {&wood, &brick,&sheep,&wheat,&ore};
-        string resourcesNames[5] = {"wood","brick","sheep","wheat","ore"};
+        vector<int*> resources = {&wood, &brick,&sheep,&wheat,&ore};
+        vector<string> resourcesNames = {"wood","brick","sheep","wheat","ore"};
 
     public:
+        int points;
+        int numberOfRoads = 0;
 
         string getName() const{
             return name;
         }
 
+        void printCards(){
+            string str;
+            bool haveCards = false;
+            for(Card& c:cards){
+                if(c.getAmount()>0) {
+                    haveCards = true;
+                    str+= c.getName() +"(" + to_string(c.getAmount()) + ") ";
+                }
+            }
+
+            if(!haveCards){
+                cout<<getName()<<" does not have any cards\n";
+            }
+            else{
+                cout<<getName()<<"'s cards: "<<str<<endl;
+            }
+
+
+        }
+
+
 
         explicit Player(string name): name(name),points(0),wood(0),brick(0),sheep(0),wheat(0),ore(0){}
 
         void printResources() const{
+            cout<<name<<"'s resources: ";
             cout<<"wood: "<<wood<<",";
             cout<<"brick: "<<brick<<",";
             cout<<"sheep: "<<sheep<<",";
@@ -46,12 +74,21 @@ namespace ariel{
             cout<<name<<" has "<<points<<" points\n";
         }
 
-        void rollDice(Board &board);
+        void rollDice(Board &board,vector<Player*>& players);
 
         void placeSettlement(Board &board,string place, int num,int side);
-        void placeRoad(Board &board,string& place,int num,int side);
+        void placeRoad(Board &board,string place,int num,int side);
 
+        void upgradeSettlement(Board &board,string place, int num,int side);
 
+        void trade();
+
+        void buyCard(Catan& catan);
+
+        void useFreeRoadsCard();
+        void useMonopolyCard(string resourceName,vector<Player*>& players);
+        void useFreeResourcesCard(string name);
+        void useFreeResourcesCard(string name1,string name2);
 
     };
 
