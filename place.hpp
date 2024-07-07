@@ -1,3 +1,5 @@
+//erikidelchik@gmail.com
+
 #ifndef PLACE_HPP
 #define PLACE_HPP
 
