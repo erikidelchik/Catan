@@ -1,3 +1,5 @@
+//erikidelchik@gmail.com
+
 #include <iostream>
 #include "buildable.hpp"
 #include "catan.hpp"
