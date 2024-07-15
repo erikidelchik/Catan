@@ -1,14 +1,20 @@
 CXX = clang++
 CXXFLAGS = -std=c++11 
 
-SRC = $(wildcard *.cpp)
-OBJ = $(SRC:%.cpp=%.o)
+MAIN=main.cpp board.cpp player.cpp
+TEST=testCounter.cpp test.cpp board.cpp player.cpp
 
-all: main
+OBJ_MAIN=$(subst .cpp,.o,$(MAIN))
+OBJ_TEST=$(subst .cpp,.o,$(TEST))
 
-main: $(OBJ)
-	$(CXX) $(CXXFLAGS) -o $@ $^
+all: main test
+
+main: $(OBJ_MAIN)
+	$(CXX) $(CXXFLAGS) $^ -o main
+	
+test: $(OBJ_TEST)
+	$(CXX) $(CXXFLAGS) $^ -o test
 
 clean:
-	rm -rf *.o main
+	rm -f *.o main test
 

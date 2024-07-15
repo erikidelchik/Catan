@@ -1,5 +1,3 @@
-//erikidelchik@gmail.com
-
 #include <iostream>
 #include "player.hpp"
 #include "board.hpp"

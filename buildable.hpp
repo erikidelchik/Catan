@@ -1,5 +1,3 @@
-//erikidelchik@gmail.com
-
 #ifndef BUILDABLE_HPP
 #define BUILDABLE_HPP
 

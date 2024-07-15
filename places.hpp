@@ -1,5 +1,3 @@
-//erikidelchik@gmail.com
-
 #ifndef PLACES_HPP
 #define PLACES_HPP
 

@@ -1,5 +1,3 @@
-//erikidelchik@gmail.com
-
 #include <iostream>
 using namespace std;
 
@@ -9,8 +7,6 @@ namespace ariel{
         string name;
         int amount = 0;
     public:
-
-
 
         explicit Card(string name): name(name) {}
         Card(string name,int amount): name(name),amount(amount) {}
@@ -23,12 +19,12 @@ namespace ariel{
             return amount;
         }
 
-        void addAmount(){
-            amount++;
+        void addAmount(int k=1){
+            amount+=k;
         }
 
-        void subAmount(){
-            amount--;
+        void subAmount(int k=1){
+            amount-=k;
         }
 
 
